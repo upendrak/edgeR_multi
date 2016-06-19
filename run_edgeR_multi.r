@@ -44,8 +44,8 @@ projectName <- ret.opts$project
 author  <-  ret.opts$author
 targetFile <- ret.opts$target
 rawDir <- ret.opts$Dir
-outDir <- ret.opts$OutDir
-features <- ret.opts$features
+OutDir <- ret.opts$OutDir
+featuresToRemove <- ret.opts$features
 varInt  <- ret.opts$varInt
 condRef <- ret.opts$condRef
 batch <- ret.opts$batch
@@ -54,29 +54,32 @@ gene.selection <- ret.opts$genesele
 cpmCutoff <- ret.opts$cpmCutoff
 normalizationMethod <- ret.opts$norm
 alpha <- ret.opts$alpha
-pAdjust <- ret.opts$pAdjust
-colors <- ret.opts$colors
+pAdjustMethod <- ret.opts$pAdjust
+col <- ret.opts$colors
 
 # checking parameters
-checkParameters.edgeR(projectName=projectName,author=author,targetFile=targetFile,
-                      rawDir=rawDir,featuresToRemove=featuresToRemove,varInt=varInt,
-                      condRef=condRef,batch=batch,alpha=alpha,pAdjustMethod=pAdjustMethod,
-                      cpmCutoff=cpmCutoff,gene.selection=gene.selection,
-                      normalizationMethod=normalizationMethod,colors=colors)
+checkParameters.edgeR(projectName,author,targetFile,rawDir,featuresToRemove,varInt,condRef,batch,alpha,pAdjustMethod,cpmCutoff,
+                      gene.selection,normalizationMethod,col)
 
 # loading target file
-# target <- loadTargetFile(targetFile=targetFile, varInt=varInt, condRef=condRef, batch=batch)
+target <- loadTargetFile(targetFile, varInt, condRef, batch)
+
+source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/loadCountData.R")
 
 # loading counts
-# counts <- loadCountData(target=target, rawDir=rawDir, featuresToRemove=featuresToRemove)
+counts <- loadCountData(target, rawDir, header=FALSE, skip=0, featuresToRemove)
+
+source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/barplotTotal.R")
 
 # description plots
-# majSequences <- descriptionPlots(counts=counts, group=target[,varInt], col=colors)
+barplotTotal(counts, group=target[,varInt], OutDir, col)
+
+# majSequences <- descriptionPlots(counts, OutDir, group, col)
 
 # edgeR analysis
 # out.edgeR <- run.edgeR(counts=counts, target=target, varInt=varInt, condRef=condRef,
 #                        batch=batch, cpmCutoff=cpmCutoff, normalizationMethod=normalizationMethod,
-#                        pAdjustMethod=pAdjustMethod)
+#                        pAdjustMethod=pAdjust)
 
 # MDS + clustering
 # exploreCounts(object=out.edgeR$dge, group=target[,varInt], gene.selection=gene.selection, col=colors)
@@ -87,7 +90,7 @@ checkParameters.edgeR(projectName=projectName,author=author,targetFile=targetFil
 
 # generating HTML report
 # writeReport.edgeR(target=target, counts=counts, out.edgeR=out.edgeR, summaryResults=summaryResults,
-#                   majSequences=majSequences, workDir=workDir, projectName=projectName, author=author,
-#                   targetFile=targetFile, rawDir=rawDir, featuresToRemove=featuresToRemove, varInt=varInt,
-#                   condRef=condRef, batch=batch, alpha=alpha, pAdjustMethod=pAdjustMethod, colors=colors,
+#                   majSequences=majSequences, workDir=outDir, projectName=projectName, author=author,
+#                   targetFile=targetFile, rawDir=rawDir, featuresToRemove=features, varInt=varInt,
+#                   condRef=condRef, batch=batch, alpha=alpha, pAdjustMethod=pAdjust, colors=colors,
 #                   gene.selection=gene.selection, normalizationMethod=normalizationMethod)
