@@ -69,12 +69,12 @@ source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/lo
 # loading counts
 counts <- loadCountData(target, rawDir, header=FALSE, skip=0, featuresToRemove)
 
-source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/barplotTotal.R")
+source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/descriptionPlots.r")
 
 # description plots
-barplotTotal(counts, group=target[,varInt], OutDir, col)
+# barplotTotal(counts, group=target[,varInt], OutDir, col)
 
-# majSequences <- descriptionPlots(counts, OutDir, group, col)
+majSequences <- descriptionPlots(counts, n=3, OutDir, group=target[,varInt], col)
 
 # edgeR analysis
 # out.edgeR <- run.edgeR(counts=counts, target=target, varInt=varInt, condRef=condRef,
