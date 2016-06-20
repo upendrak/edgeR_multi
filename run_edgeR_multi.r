@@ -24,6 +24,7 @@ options<-matrix(c('project',  'pn', 1,  "character",    # project name
                   'varInt', 'v',  2,  "character",      # factor of interest
                   'condRef',  'c',  2,  "character",    # reference biological condition
                   'batch',  'b',  2,  "character",      # blocking factor: NULL (default) or "batch" for example
+                  'replicates', 'mi',  2,  "integer",   # minReplicates (smallest number of replicates)
                   'cpmCutoff',  'cc', 2,  "integer",    # counts-per-million cut-off to filter low counts
                   'alpha',  'a',  2,  "double",         # threshold of statistical significance
                   'pAdjust',  'p',  2,  "character",    # p-value adjustment method: "BH" (default) or "BY"
@@ -49,6 +50,7 @@ featuresToRemove <- ret.opts$features
 varInt  <- ret.opts$varInt
 condRef <- ret.opts$condRef
 batch <- ret.opts$batch
+minReplicates <- ret.opts$replicates
 fitType <- ret.opts$filtType
 gene.selection <- ret.opts$genesele
 cpmCutoff <- ret.opts$cpmCutoff
@@ -64,25 +66,21 @@ checkParameters.edgeR(projectName,author,targetFile,rawDir,featuresToRemove,varI
 # loading target file
 target <- loadTargetFile(targetFile, varInt, condRef, batch)
 
-source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/loadCountData.R")
 
 # loading counts
+source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/loadCountData.R")
 counts <- loadCountData(target, rawDir, header=FALSE, skip=0, featuresToRemove)
 
-source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/descriptionPlots.r")
-
 # description plots
-# barplotTotal(counts, group=target[,varInt], OutDir, col)
-
+source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/descriptionPlots.r")
 majSequences <- descriptionPlots(counts, n=3, OutDir, group=target[,varInt], col)
 
 # edgeR analysis
-# out.edgeR <- run.edgeR(counts=counts, target=target, varInt=varInt, condRef=condRef,
-#                        batch=batch, cpmCutoff=cpmCutoff, normalizationMethod=normalizationMethod,
-#                        pAdjustMethod=pAdjust)
+source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/run.edgeR.r")
+out.edgeR <- run.edgeR(counts, target, varInt, condRef, batch, cpmCutoff, minReplicates, normalizationMethod, pAdjustMethod)
 
 # MDS + clustering
-# exploreCounts(object=out.edgeR$dge, group=target[,varInt], gene.selection=gene.selection, col=colors)
+# exploreCounts(object=out.edgeR$dge, group=target[,varInt], gene.selection, col)
 
 # summary of the analysis (boxplots, dispersions, export table, nDiffTotal, histograms, MA plot)
 # summaryResults <- summarizeResults.edgeR(out.edgeR, group=target[,varInt], counts=counts, alpha=alpha, col=colors)
