@@ -66,7 +66,6 @@ checkParameters.edgeR(projectName,author,targetFile,rawDir,featuresToRemove,varI
 # loading target file
 target <- loadTargetFile(targetFile, varInt, condRef, batch)
 
-
 # loading counts
 source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/loadCountData.R")
 counts <- loadCountData(target, rawDir, header=FALSE, skip=0, featuresToRemove)
@@ -80,15 +79,18 @@ source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/ru
 out.edgeR <- run.edgeR(counts, target, varInt, condRef, batch, cpmCutoff, minReplicates, normalizationMethod, pAdjustMethod)
 
 # MDS + clustering
-# exploreCounts(object=out.edgeR$dge, group=target[,varInt], gene.selection, col)
+source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/clusterPlot.R")
+source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/MDSPlot.R")
+clusterPlot(group=target[,varInt], OutDir)  
+MDSPlot(group=target[,varInt], gene.selection, col, OutDir)
 
 # summary of the analysis (boxplots, dispersions, export table, nDiffTotal, histograms, MA plot)
-# summaryResults <- summarizeResults.edgeR(out.edgeR, group=target[,varInt], counts=counts, alpha=alpha, col=colors)
+source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/summarizeResults.edgeR.r")
+summaryResults <- summarizeResults.edgeR(out.edgeR, group=target[,varInt], counts, alpha, col)
 
 
 # generating HTML report
-# writeReport.edgeR(target=target, counts=counts, out.edgeR=out.edgeR, summaryResults=summaryResults,
-#                   majSequences=majSequences, workDir=outDir, projectName=projectName, author=author,
-#                   targetFile=targetFile, rawDir=rawDir, featuresToRemove=features, varInt=varInt,
-#                   condRef=condRef, batch=batch, alpha=alpha, pAdjustMethod=pAdjust, colors=colors,
-#                   gene.selection=gene.selection, normalizationMethod=normalizationMethod)
+# source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/writeReport.edgeR.r")
+# writeReport.edgeR(target, counts, out.edgeR, summaryResults, majSequences, OutDir, projectName, author,
+#                   targetFile, rawDir, featuresToRemove, varInt, condRef, batch, alpha, pAdjustMethod, colors,
+#                   gene.selection, normalizationMethod)
