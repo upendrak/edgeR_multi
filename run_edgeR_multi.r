@@ -12,6 +12,8 @@ library(genefilter)
 library(devtools)
 library(SARTools)
 library(getopt)
+library(knitr)
+
 
 args<-commandArgs(TRUE)
 
@@ -90,7 +92,11 @@ summaryResults <- summarizeResults.edgeR(out.edgeR, group=target[,varInt], count
 
 
 # generating HTML report
-# source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/writeReport.edgeR.r")
-# writeReport.edgeR(target, counts, out.edgeR, summaryResults, majSequences, OutDir, projectName, author,
-#                   targetFile, rawDir, featuresToRemove, varInt, condRef, batch, alpha, pAdjustMethod, colors,
-#                   gene.selection, normalizationMethod)
+source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/writeReport.edgeR.r")
+writeReport.edgeR(target=target, counts=counts, out.edgeR=out.edgeR, summaryResults=summaryResults,
+                  majSequences=majSequences, OutDir=OutDir, projectName=projectName, author=author,
+                  targetFile=targetFile, rawDir=rawDir, featuresToRemove=featuresToRemove, varInt=varInt,
+                  condRef=condRef, batch=batch, alpha=alpha, pAdjustMethod=pAdjustMethod, colors=colors,
+                  gene.selection=gene.selection, normalizationMethod=normalizationMethod)
+
+
