@@ -35,6 +35,7 @@ writeReport.edgeR <- function(target,counts,out.edgeR,summaryResults,majSequence
             output=nd, quiet=TRUE, title="Statistical report")
 
   # delete unwanted directory/file
+  unlink("Rplots.pdf",force=TRUE)
   unlink("cache",force=TRUE,recursive=TRUE)
   unlink(paste0("report_edgeR.md"),force=TRUE)
   cat("HTML report created\n")
