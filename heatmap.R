@@ -17,7 +17,7 @@ Heatmap <- function(OutDir)
 
 		# Plotting
   		png(filename=paste(nd,"heatmap.png",sep="/"),width=1800,height=1800,res=300)
-		heatmap(countspermi[idx,])
-		mtext("Heatmap",cex=2,line=0)
+		heatmap(countspermi[idx,], Colv = NA)
+		title("Heatmap", line = 3)
 		dev.off()
 }
