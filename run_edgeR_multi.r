@@ -13,6 +13,8 @@ library(devtools)
 library(SARTools)
 library(getopt)
 library(knitr)
+library(RColorBrewer)
+library(genefilter)
 
 
 args<-commandArgs(TRUE)
@@ -83,8 +85,11 @@ out.edgeR <- run.edgeR(counts, target, varInt, condRef, batch, cpmCutoff, minRep
 # MDS + clustering
 source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/clusterPlot.R")
 source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/MDSPlot.R")
+source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/heatmap.R")
+
 clusterPlot(group=target[,varInt], OutDir)  
 MDSPlot(group=target[,varInt], gene.selection, col, OutDir)
+Heatmap(OutDir)
 
 # summary of the analysis (boxplots, dispersions, export table, nDiffTotal, histograms, MA plot)
 source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/summarizeResults.edgeR.r")
