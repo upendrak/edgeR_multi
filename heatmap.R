@@ -10,15 +10,14 @@ Heatmap <- function(OutDir)
 
 		# Now pick the genes with the top variance over all samples:
 		rv <- rowVars(countspermi)
-		idx <- order(-rv)[1:40]
+		idx <- order(-rv)[1:20]
 
-		# color scheme
-		# hmcol <- colorRampPalette(brewer.pal(9, "GnBu"))(100)
-		
+		# color scheme		
 		nd = paste(OutDir,"figures",sep="/")
 
 		# Plotting
   		png(filename=paste(nd,"heatmap.png",sep="/"),width=1800,height=1800,res=300)
 		heatmap(countspermi[idx,])
+		mtext("Heatmap",cex=2,line=0)
 		dev.off()
 }
