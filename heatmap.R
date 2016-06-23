@@ -12,7 +12,6 @@ Heatmap <- function(OutDir)
 		rv <- rowVars(countspermi)
 		idx <- order(-rv)[1:20]
 
-		# color scheme		
 		nd = paste(OutDir,"figures",sep="/")
 
 		# Plotting
