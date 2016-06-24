@@ -1,14 +1,12 @@
 # <center> Statistical report of test project `r projectName`: </center>
-# <center> pairwise comparison(s) of conditions </center>
-# <center> with edgeR </center>
+# <center> `genesele` comparison(s) of conditions </center>
+# <center> with SARTools' edgeR </center>
 
 --------------------------------------------------------------------------------------------------------------------------
 
 Author: `r author`
 
 Date: `r Sys.Date()`
-
-The SARTools R package which generated this report has been developped at PF2 - Institut Pasteur by M.-A. Dillies and H. Varet (hugo.varet@pasteur.fr). Thanks to cite H. Varet, L. Brillet-Guéguen, J.-Y. Coppee and M.-A. Dillies, _SARTools: A DESeq2- and EdgeR-Based R Pipeline for Comprehensive Differential Analysis of RNA-Seq Data_, PLoS One, 2016, doi: http://dx.doi.org/10.1371/journal.pone.0157022 when using this tool for any analysis published.
 
 --------------------------------------------------------------------------------------------------------------------------
 
@@ -19,7 +17,7 @@ The SARTools R package which generated this report has been developped at PF2 - 
 3. Filtering low counts
 4. Variability within the experiment: data exploration
 5. Normalization
-6. Differential analysis
+6. Differential gene expression analysis
 7. R session information and parameters
 8. Bibliography
 
@@ -193,7 +191,7 @@ The edgeR model assumes that the count data follow a negative binomial distribut
 
 Figure 9 shows the result of the dispersion estimation step. The x- and y-axes represent the mean count value and the estimated dispersion respectively. Black dots represent empirical dispersion estimates for each feature (from the observed count values). The blue curve shows the relationship between the means of the counts and the dispersions modeled with splines. The red segment represents the common dispersion.
 
-### 6.3 Statistical test for differential expression
+### 6.3 Statistical test for differential gene expression
 
 Once the dispersion estimation and the model fitting have been done, edgeR can perform the statistical testing. Figure 10 shows the distributions of raw p-values computed by the statistical test for the comparison(s) done. This distribution is expected to be a mixture of a uniform distribution on $[0,1]$ and a peak around 0 corresponding to the differentially expressed features.
 
