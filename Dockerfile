@@ -9,9 +9,7 @@ RUN apt-get install -y git
 RUN apt-get install r-base-dev -y
 RUN apt-get install libxml2 -y
 RUN apt-get install libxml2-dev -y
-#RUN apt-get -y build-dep libcurl4-gnutls-dev
 RUN apt-get -y install libcurl4-gnutls-dev
-#RUN apt-get install -y libcurl-devel
 RUN apt-get install -y libssl-dev
 
 RUN Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite("edgeR");'
@@ -24,12 +22,14 @@ RUN Rscript -e 'install.packages("knitr", dependencies = TRUE);'
 RUN Rscript -e 'install.packages("RColorBrewer", dependencies = TRUE);'
 
 # Add multiple custom functions for Pie_compare, Pie_plot and Bar_compare plots
-RUN git clone https://github.com/upendrak/edgeR_multi.git
+ENV EDGERM https://github.com/upendrak/edgeR_multi.git
+RUN git clone $EDGERM
 
 WORKDIR /edgeR_multi
 
 # change permissions to the wrapper script
-RUN chmod +x run_edgeR_multi.r && cp run_edgeR_multi.r /usr/bin
+ENV BINPATH /usr/bin
+RUN chmod +x run_edgeR_multi.r && cp run_edgeR_multi.r $BINPATH
 RUN rm -r test_data Dockerfile
 RUN mv *.* /
 
