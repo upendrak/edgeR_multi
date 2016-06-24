@@ -37,8 +37,6 @@ ENTRYPOINT ["run_edgeR_multi.r"]
 CMD ["-h"]
 
 # Building and testing
-# sudo docker build -t"=ubuntu/iuta:1.0" .
-# sudo docker run ubuntu/iuta:1.0 -h
-# sudo docker run --rm -v $(pwd):/working-dir -w /working-dir ubuntu/iuta:1.0 --gtf mm10_kg_sample_IUTA.gtf --bam1 bam_1 --bam2 bam_2 --fld empirical --test.type SKK,CQ,KY --numsamp 3 --output IUTA_test_1 --groups 1,2 --gene.id Pcmtd1 
-# With no gene id (all genes compressed)
-# sudo docker run --rm -v $(pwd):/working-dir -w /working-dir ubuntu/iuta:1.0 --gtf mm10_kg_sample_IUTA.gtf --bam1 bam_1 --bam2 bam_2 --fld empirical --test.type SKK,CQ,KY --numsamp 3 --output IUTA_test_1 --groups 1,2
+# sudo docker build -t"=rbase/edger-multi:1.0" .
+# sudo docker run rbase/edger-multi:1.0 -h
+# sudo docker run --rm -v $(pwd):/working-dir -w /working-dir rbase/edger-multi:1.0 --project "test_edgeR" --author "Upendra" --Dir raw --OutDir ./ --target target.txt --features "alignment_not_unique","ambiguous","no_feature","not_aligned","too_low_aQual" --replicates 2 --varInt "group" --condRef "WT" --cpmCutoff 1 --genesele "pairwise" --norm "TMM" --alpha 0.05 --pAdjust "BH" --colors "dodgerblue","orange"
