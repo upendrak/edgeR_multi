@@ -1,5 +1,5 @@
 # <center> Statistical report of test project `r projectName`: </center>
-# <center> `genesele` comparison(s) of conditions </center>
+# <center> `r genesele` comparison(s) of conditions </center>
 # <center> with SARTools' edgeR </center>
 
 --------------------------------------------------------------------------------------------------------------------------
