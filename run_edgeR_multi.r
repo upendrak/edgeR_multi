@@ -71,33 +71,33 @@ checkParameters.edgeR(projectName,author,targetFile,rawDir,featuresToRemove,varI
 target <- loadTargetFile(targetFile, varInt, condRef, batch)
 
 # loading counts
-source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/loadCountData.R")
+source("/loadCountData.R")
 counts <- loadCountData(target, rawDir, header=FALSE, skip=0, featuresToRemove)
 
 # description plots
-source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/descriptionPlots.r")
+source("/descriptionPlots.r")
 majSequences <- descriptionPlots(counts, n=3, OutDir, group=target[,varInt], col)
 
 # edgeR analysis
-source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/run.edgeR.r")
+source("/run.edgeR.r")
 out.edgeR <- run.edgeR(counts, target, varInt, condRef, batch, cpmCutoff, minReplicates, normalizationMethod, pAdjustMethod)
 
 # MDS + clustering
-source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/clusterPlot.R")
-source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/MDSPlot.R")
-source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/heatmap.R")
+source("/clusterPlot.R")
+source("/MDSPlot.R")
+source("/heatmap.R")
 
 clusterPlot(group=target[,varInt], OutDir)  
 MDSPlot(group=target[,varInt], gene.selection, col, OutDir)
 Heatmap(OutDir)
 
 # summary of the analysis (boxplots, dispersions, export table, nDiffTotal, histograms, MA plot)
-source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/summarizeResults.edgeR.r")
+source("/summarizeResults.edgeR.r")
 summaryResults <- summarizeResults.edgeR(out.edgeR, group=target[,varInt], counts, alpha, col)
 
 
 # generating HTML report
-source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/writeReport.edgeR.r")
+source("/writeReport.edgeR.r")
 writeReport.edgeR(target=target, counts=counts, out.edgeR=out.edgeR, summaryResults=summaryResults,
                   majSequences=majSequences, OutDir=OutDir, projectName=projectName, author=author,
                   targetFile=targetFile, rawDir=rawDir, featuresToRemove=featuresToRemove, varInt=varInt,

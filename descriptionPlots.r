@@ -12,27 +12,27 @@ descriptionPlots <- function(counts, n=3, group=target[,varInt], OutDir, col){
   # create the figures directory if does not exist
   dir.create(paste(OutDir,"figures",sep="/"), showWarnings=FALSE)
   
-  source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/barplotTotal.R")
+  source("/barplotTotal.R")
 
   # total number of reads per sample
   barplotTotal(counts, group=target[,varInt], OutDir, col)
   
-  source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/barplotNull.R")
+  source("/barplotNull.R")
 
   # percentage of null counts per sample
   barplotNull(counts, group=target[,varInt], OutDir, col)
   
-  source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/densityPlot.R")
+  source("/densityPlot.R")
 
   # distribution of counts per sample
   densityPlot(counts, group=target[,varInt], OutDir, col)
   
-  source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/majSequences.R")
+  source("/majSequences.R")
 
   # features which catch the most important number of reads
   majSequences <- majSequences(counts,  n=3, group=target[,varInt], OutDir, col)
   
-  source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/pairwiseScatterPlots.R")
+  source("/pairwiseScatterPlots.R")
 
   # SERE and pairwise scatter plots
   cat("Matrix of SERE statistics:\n")

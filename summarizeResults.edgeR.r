@@ -13,15 +13,15 @@
 summarizeResults.edgeR <- function(out.edgeR, group, counts, alpha, col){  
   
   # boxplots before and after normalisation
-  source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/countsBoxplots.R")
+  source("/countsBoxplots.R")
   countsBoxplots(out.edgeR$dge, group, col, OutDir)
 
   # dispersions
-  source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/BCVPlot.R")
+  source("/BCVPlot.R")
   BCVPlot(dge=out.edgeR$dge, OutDir)
   
   # exporting results of the differential analysis
-  source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/exportResults.edgeR.R")
+  source("/exportResults.edgeR.R")
   complete <- exportResults.edgeR(out.edgeR, group, counts, alpha, OutDir)
 
   # small table with number of differentially expressed features
@@ -30,15 +30,15 @@ summarizeResults.edgeR <- function(out.edgeR, group, counts, alpha, col){
   print(nDiffTotal, quote=FALSE)
   
   # histograms of raw p-values
-  source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/rawpHist.R")
+  source("/rawpHist.R")
   rawpHist(complete, OutDir)
   
   # MA-plots
-  source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/MAPlot.R")
+  source("/MAPlot.R")
   MAPlot(complete, alpha, OutDir)
   
   # Volcano plots
-  source("/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/volcanoPlot.r")
+  source("/volcanoPlot.r")
   volcanoPlot(complete, alpha, OutDir)
   
   return(list(complete, nDiffTotal))

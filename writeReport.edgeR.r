@@ -31,7 +31,7 @@ writeReport.edgeR <- function(target,counts,out.edgeR,summaryResults,majSequence
 
   nd = paste(OutDir,output,sep="/")
 
-  knit2html(input="/Users/upendrakumardevisetty/Documents/git_repos/edgeR_multifactorial/report_edgeR.rmd",
+  knit2html(input="/report_edgeR.rmd",
             output=nd, quiet=TRUE, title="Statistical report")
 
   # delete unwanted directory/file
