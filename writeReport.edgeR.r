@@ -27,7 +27,7 @@
 writeReport.edgeR <- function(target,counts,out.edgeR,summaryResults,majSequences,OutDir,projectName,author,targetFile,rawDir,
                               featuresToRemove,varInt,condRef,batch,alpha,pAdjustMethod,colors,gene.selection,normalizationMethod)
   {
-  output=paste0(projectName, "_Upendra_custom_report.html")
+  output=paste0(projectName, "_edgeR-multifactorial_report.html")
 
   nd = paste(OutDir,output,sep="/")
 
