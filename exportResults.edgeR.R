@@ -56,16 +56,13 @@ exportResults.edgeR <- function(out.edgeR, group=target[,varInt], counts, alpha=
 	name <- gsub("_","",name)
 
   file1 = paste0(name,".complete.txt")
-  file2=paste(nd, file1 , sep="/")
-  write.table(complete.name, file=file2, sep="\t", row.names=FALSE, dec=".", quote=FALSE)
+  write.table(complete.name, file=file1, sep="\t", row.names=FALSE, dec=".", quote=FALSE)
 
-  file3 = paste0(name,".up.txt")
-  file4=paste(nd, file3 , sep="/")
-  write.table(up.name, file=file4, row.names=FALSE, sep="\t", dec=".", quote=FALSE)
+  file2 = paste0(name,".up.txt")
+  write.table(up.name, file=file2, row.names=FALSE, sep="\t", dec=".", quote=FALSE)
 
-  file5 = paste0(name,".down.txt")
-  file6=paste(nd, file5 , sep="/")
-  write.table(down.name, file=file6, row.names=FALSE, sep="\t", dec=".", quote=FALSE)
+  file3 = paste0(name,".down.txt")
+  write.table(down.name, file=file3, row.names=FALSE, sep="\t", dec=".", quote=FALSE)
 
   }
 

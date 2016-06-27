@@ -112,28 +112,8 @@ MDSPlot(group=target[,varInt], gene.selection, col, output.file="MDS.png")
 Heatmap(output.file="heatmap.png")
 
 # summary of the analysis (boxplots, dispersions, export table, nDiffTotal, histograms, MA plot)
-#source("/summarizeResults.edgeR.r")
-#summaryResults <- summarizeResults.edgeR(out.edgeR, group=target[,varInt], counts, alpha, col)
-
-#boxplots before and after normalisation
-source("/countsBoxplots.R")
-countsBoxplots(out.edgeR$dge, group=target[,varInt], col, output.file="countsBoxplots.png")
-
-# dispersions
-source("/BCVPlot.R")
-BCVPlot(dge=out.edgeR$dge, output.file="BCV.png")
-
-# histograms of raw p-values
-source("/rawpHist.R")
-rawpHist(complete, output.file="rawpHist.png")
-
-# MA-plots
-source("/MAPlot.R")
-MAPlot(complete, alpha, output.file="MAPlot.png")
-
-# Volcano plots
-source("/volcanoPlot.r")
-volcanoPlot(complete, alpha, output.file="volcanoPlot.png")
+source("/summarizeResults.edgeR.r")
+summaryResults <- summarizeResults.edgeR(out.edgeR, group=target[,varInt], counts, alpha, col)
 
 # generating HTML report
 #source("/writeReport.edgeR.r")

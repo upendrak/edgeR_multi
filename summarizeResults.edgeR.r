@@ -14,7 +14,7 @@ summarizeResults.edgeR <- function(out.edgeR, group, counts, alpha, col){
   
   # boxplots before and after normalisation
   source("/countsBoxplots.R")
-  countsBoxplots(out.edgeR$dge, group, col, output.file="countsBoxplots.png")
+  countsBoxplots(out.edgeR$dge, group, col=target[,varInt], output.file="countsBoxplots.png")
 
   # dispersions
   source("/BCVPlot.R")
@@ -22,7 +22,7 @@ summarizeResults.edgeR <- function(out.edgeR, group, counts, alpha, col){
   
   # exporting results of the differential analysis
   source("/exportResults.edgeR.R")
-  complete <- exportResults.edgeR(out.edgeR, group, counts, alpha, OutDir)
+  complete <- exportResults.edgeR(out.edgeR, group=target[,varInt], counts, alpha, OutDir)
 
   # small table with number of differentially expressed features
   nDiffTotal <- nDiffTotal(complete, alpha)
