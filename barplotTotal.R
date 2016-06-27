@@ -9,9 +9,9 @@
 #' @return A file named barplotTotal.png in the figures directory
 #' @author Marie-Agnes Dillies and Hugo Varet
 
-barplotTotal <- function(counts, group=target[,varInt], OutDir, col){
+barplotTotal <- function(counts, group=target[,varInt], output.file="BarplotTotal.png", col){
 
-  png(filename=paste(OutDir,"barplotTotal.png",sep="/"),width=min(3600,1800+800*ncol(counts)/10),height=1800,res=300)
+  png(filename=output.file,width=min(3600,1800+800*ncol(counts)/10),height=1800,res=300)
   libsize <- colSums(counts)/1e6
 
   col <- unlist(strsplit(ret.opts$colors, ","))

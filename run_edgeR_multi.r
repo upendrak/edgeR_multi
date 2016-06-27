@@ -76,7 +76,7 @@ counts <- loadCountData(target, rawDir, header=FALSE, skip=0, featuresToRemove)
 
 # total number of reads per sample
 source("/barplotTotal.R")
-barplotTotal(counts, group=target[,varInt], OutDir, col)
+barplotTotal(counts, group=target[,varInt], output.file="BarplotTotal.png", col)
 
 # description plots
 #source("/descriptionPlots.r")
