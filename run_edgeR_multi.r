@@ -74,6 +74,10 @@ target <- loadTargetFile(targetFile, varInt, condRef, batch)
 source("/loadCountData.R")
 counts <- loadCountData(target, rawDir, header=FALSE, skip=0, featuresToRemove)
 
+# total number of reads per sample
+source("/barplotTotal.R")
+barplotTotal(counts, group=target[,varInt], OutDir, col)
+
 # description plots
 #source("/descriptionPlots.r")
 #majSequences <- descriptionPlots(counts, n=3, OutDir, group=target[,varInt], col)
@@ -86,7 +90,7 @@ counts <- loadCountData(target, rawDir, header=FALSE, skip=0, featuresToRemove)
 source("/clusterPlot.R")
 #source("/MDSPlot.R")
 #source("/heatmap.R")
-clusterPlot(group=target[,varInt], OutDir)  
+#clusterPlot(group=target[,varInt], OutDir)  
 #MDSPlot(group=target[,varInt], gene.selection, col, OutDir)
 #Heatmap(OutDir)
 

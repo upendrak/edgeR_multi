@@ -10,11 +10,8 @@
 #' @author Marie-Agnes Dillies and Hugo Varet
 
 barplotTotal <- function(counts, group=target[,varInt], OutDir, col){
-  dir.create(paste(OutDir,"figures",sep="/"), showWarnings=FALSE)
 
-  nd = paste(OutDir,"figures",sep="/")
-
-  png(filename=paste(nd,"barplotTotal.png",sep="/"),width=min(3600,1800+800*ncol(counts)/10),height=1800,res=300)
+  png(filename=paste(OutDir,"barplotTotal.png",sep="/"),width=min(3600,1800+800*ncol(counts)/10),height=1800,res=300)
   libsize <- colSums(counts)/1e6
 
   col <- unlist(strsplit(ret.opts$colors, ","))
