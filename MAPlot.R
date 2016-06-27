@@ -8,13 +8,11 @@
 #' @return A file named MAPlot.png in the figures directory containing one MA-plot per comparison
 #' @author Marie-Agnes Dillies and Hugo Varet
 
-MAPlot <- function(complete, alpha, OutDir){
+MAPlot <- function(complete, alpha, output.file="MAPlot.png"){
   nrow <- ceiling(sqrt(length(complete)))
   ncol <- ceiling(length(complete)/nrow)
   
-  nd = paste(OutDir,"figures",sep="/")
-
-  png(filename=paste(nd,"MAPlot.png",sep="/"), width=1800*max(ncol,nrow), height=1800*min(ncol,nrow), res=300)
+  png(filename=output.file, width=1800*max(ncol,nrow), height=1800*min(ncol,nrow), res=300)
     par(mfrow=sort(c(nrow,ncol)))
       for (name in names(complete)){
         complete.name <- complete[[name]]

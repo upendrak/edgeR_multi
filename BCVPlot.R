@@ -7,10 +7,8 @@
 #' @return A file named BCV.png in the figures directory with a BCV plot produced by the \code{plotBCV()} function of the edgeR package
 #' @author Marie-Agnes Dillies and Hugo Varet
 
-BCVPlot <- function(dge=out.edgeR$dge, OutDir){	
-  nd = paste(OutDir,"figures",sep="/")
-
-  png(filename=paste(nd,"BCV.png",sep="/"), width=1800, height=1800, res=300)
+BCVPlot <- function(dge=out.edgeR$dge, output.file="BCV.png"){	
+  png(filename=output.file, width=1800, height=1800, res=300)
   
   plotBCV(dge, las = 1, main = "BCV plot")
   

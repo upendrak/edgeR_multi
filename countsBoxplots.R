@@ -9,7 +9,7 @@
 #' @return A file named countsBoxplots.png in the figures directory containing boxplots of the raw and normalized counts
 #' @author Marie-Agnes Dillies and Hugo Varet
 
-countsBoxplots <- function(object, group=target[,varInt], col, OutDir){
+countsBoxplots <- function(object, group=target[,varInt], col, output.file="countsBoxplots.png"){
   counts <- object$counts
   counts <- removeNull(counts)
 	tmm <- object$samples$norm.factors
@@ -18,9 +18,7 @@ countsBoxplots <- function(object, group=target[,varInt], col, OutDir){
   norm.counts <- scale(object$counts, center=FALSE, scale=f)
   norm.counts <- removeNull(norm.counts)    
 
-  nd = paste(OutDir,"figures",sep="/")
-
-  png(filename=paste(nd,"countsBoxplots.png",sep="/"),width=2*min(2200,1800+800*ncol(norm.counts)/10),height=1800,res=300)
+  png(filename=output.file,width=2*min(2200,1800+800*ncol(norm.counts)/10),height=1800,res=300)
   par(mfrow=c(1,2))
 	
   col <- unlist(strsplit(col, ","))

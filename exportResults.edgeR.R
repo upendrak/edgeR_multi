@@ -55,9 +55,6 @@ exportResults.edgeR <- function(out.edgeR, group=target[,varInt], counts, alpha=
 	# exports
 	name <- gsub("_","",name)
 
-  dir.create(paste(OutDir,"tables",sep="/"), showWarnings=FALSE)
-  nd = paste(OutDir,"tables",sep="/")
-
   file1 = paste0(name,".complete.txt")
   file2=paste(nd, file1 , sep="/")
   write.table(complete.name, file=file2, sep="\t", row.names=FALSE, dec=".", quote=FALSE)

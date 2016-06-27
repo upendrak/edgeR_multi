@@ -14,11 +14,11 @@ summarizeResults.edgeR <- function(out.edgeR, group, counts, alpha, col){
   
   # boxplots before and after normalisation
   source("/countsBoxplots.R")
-  countsBoxplots(out.edgeR$dge, group, col, OutDir)
+  countsBoxplots(out.edgeR$dge, group, col, output.file="countsBoxplots.png")
 
   # dispersions
   source("/BCVPlot.R")
-  BCVPlot(dge=out.edgeR$dge, OutDir)
+  BCVPlot(dge=out.edgeR$dge, output.file="BCV.png")
   
   # exporting results of the differential analysis
   source("/exportResults.edgeR.R")
@@ -31,15 +31,15 @@ summarizeResults.edgeR <- function(out.edgeR, group, counts, alpha, col){
   
   # histograms of raw p-values
   source("/rawpHist.R")
-  rawpHist(complete, OutDir)
+  rawpHist(complete, output.file="rawpHist.png")
   
   # MA-plots
   source("/MAPlot.R")
-  MAPlot(complete, alpha, OutDir)
+  MAPlot(complete, alpha, output.file="MAPlot.png")
   
   # Volcano plots
   source("/volcanoPlot.r")
-  volcanoPlot(complete, alpha, OutDir)
+  volcanoPlot(complete, alpha, output.file="volcanoPlot.png")
   
   return(list(complete, nDiffTotal))
 }

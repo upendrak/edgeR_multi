@@ -7,13 +7,11 @@
 #' @return A file named rawpHist.png in the figures directory with one histogram of raw p-values per comparison
 #' @author Marie-Agnes Dillies and Hugo Varet
 
-rawpHist <- function(complete, OutDir){
+rawpHist <- function(complete, output.file="rawpHist.png"){
   nrow <- ceiling(sqrt(length(complete)))
   ncol <- ceiling(length(complete)/nrow)
   
-  nd = paste(OutDir,"figures",sep="/")
-
-  png(filename=paste(nd,"rawpHist.png",sep="/"), width=1800*max(ncol,nrow), height=1800*min(ncol,nrow), res=300)
+  png(filename=output.file, width=1800*max(ncol,nrow), height=1800*min(ncol,nrow), res=300)
   par(mfrow=sort(c(nrow,ncol)))
     for (name in names(complete)){
       hist(complete[[name]][,"pvalue"], nclass=50, xlab="Raw p-value", 
