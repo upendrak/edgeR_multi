@@ -29,10 +29,8 @@ writeReport.edgeR <- function(target,counts,out.edgeR,summaryResults,majSequence
   {
   output=paste0(projectName, "_edgeR-multifactorial_report.html")
 
-  nd = paste(OutDir,output,sep="/")
-
   knit2html(input="/report_edgeR.rmd",
-            output=nd, quiet=TRUE, title="Statistical report")
+            output=output, quiet=TRUE, title="Statistical report")
 
   # delete unwanted directory/file
   unlink("Rplots.pdf",force=TRUE)
