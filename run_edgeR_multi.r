@@ -63,9 +63,6 @@ alpha <- ret.opts$alpha
 pAdjustMethod <- ret.opts$pAdjust
 col <- ret.opts$colors
 
-dir.create(paste(OutDir,"figures",sep="/"), showWarnings=FALSE)
-dir.create(paste(OutDir,"tables",sep="/"), showWarnings=FALSE)
-
 # checking parameters
 checkParameters.edgeR(projectName,author,targetFile,rawDir,featuresToRemove,varInt,condRef,batch,alpha,pAdjustMethod,cpmCutoff,
                       gene.selection,normalizationMethod,col)
@@ -82,14 +79,14 @@ counts <- loadCountData(target, rawDir, header=FALSE, skip=0, featuresToRemove)
 #majSequences <- descriptionPlots(counts, n=3, OutDir, group=target[,varInt], col)
 
 # edgeR analysis
-#source("/run.edgeR.r")
-#out.edgeR <- run.edgeR(counts, target, varInt, condRef, batch, cpmCutoff, minReplicates, normalizationMethod, pAdjustMethod)
+source("/run.edgeR.r")
+out.edgeR <- run.edgeR(counts, target, varInt, condRef, batch, cpmCutoff, minReplicates, normalizationMethod, pAdjustMethod)
 
 # MDS + clustering
-#source("/clusterPlot.R")
+source("/clusterPlot.R")
 #source("/MDSPlot.R")
 #source("/heatmap.R")
-#clusterPlot(group=target[,varInt], OutDir)  
+clusterPlot(group=target[,varInt], OutDir)  
 #MDSPlot(group=target[,varInt], gene.selection, col, OutDir)
 #Heatmap(OutDir)
 

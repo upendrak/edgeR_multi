@@ -12,9 +12,8 @@ clusterPlot <- function(group=target[,varInt], OutDir){
   object=out.edgeR$dge
   counts.trans=cpm(object, prior.count=2, log=TRUE)
   hc <- hclust(dist(t(counts.trans)), method="ward.D")
-  nd = paste(OutDir,"figures",sep="/")
 
-  png(filename=paste(nd,"cluster.png",sep="/"),width=1800,height=1800,res=300)
+  png(filename=paste(OutDir,"cluster.png",sep="/"),width=1800,height=1800,res=300)
   plot(hc, hang=-1, ylab="Height", las=2, xlab="Method: Euclidean distance - Ward criterion", main="Cluster dendrogram")
   dev.off()
 }
