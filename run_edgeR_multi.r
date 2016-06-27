@@ -117,7 +117,7 @@ Heatmap(output.file="heatmap.png")
 
 #boxplots before and after normalisation
 source("/countsBoxplots.R")
-countsBoxplots(out.edgeR$dge, group, col, output.file="countsBoxplots.png")
+countsBoxplots(out.edgeR$dge, group=target[,varInt], col, output.file="countsBoxplots.png")
 
 # dispersions
 source("/BCVPlot.R")
