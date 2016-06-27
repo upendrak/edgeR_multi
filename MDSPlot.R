@@ -11,8 +11,7 @@
 #' @return A file named MDS.png in the figures directory
 #' @author Marie-Agnes Dillies and Hugo Varet
 
-MDSPlot <- function(group=target[,varInt], gene.selection, col, OutDir){
-    nd = paste(OutDir,"figures",sep="/")    
+MDSPlot <- function(group=target[,varInt], gene.selection, col, output.file="MDS.png"){
     object=out.edgeR$dge
     n=min(500,nrow(object$counts))
 
@@ -22,7 +21,7 @@ MDSPlot <- function(group=target[,varInt], gene.selection, col, OutDir){
     
     col <- unlist(strsplit(ret.opts$colors, ","))
 
-    png(filename=paste(nd,"MDS.png",sep="/"),width=1800,height=1800,res=300)
+    png(filename=output.file,width=1800,height=1800,res=300)
     plot(coord$x,coord$y, col = col[as.integer(group)], las=1, main="Multi-Dimensional Scaling plot",
          xlab="Leading logFC dimension 1", ylab="Leading logFC dimension 2", cex=2, pch=16)
     abline(h=0,v=0,lty=2,col="lightgray")

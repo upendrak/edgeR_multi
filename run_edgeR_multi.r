@@ -74,37 +74,32 @@ target <- loadTargetFile(targetFile, varInt, condRef, batch)
 source("/loadCountData.R")
 counts <- loadCountData(target, rawDir, header=FALSE, skip=0, featuresToRemove)
 
-# total number of reads per sample
-source("/barplotTotal.R")
-barplotTotal(counts, group=target[,varInt], output.file="BarplotTotal.png", col)
-
 # description plots
-#source("/descriptionPlots.r")
-#majSequences <- descriptionPlots(counts, n=3, OutDir, group=target[,varInt], col)
+source("/descriptionPlots.r")
+majSequences <- descriptionPlots(counts, n=3, OutDir, group=target[,varInt], col)
 
 # edgeR analysis
-#source("/run.edgeR.r")
-#out.edgeR <- run.edgeR(counts, target, varInt, condRef, batch, cpmCutoff, minReplicates, normalizationMethod, pAdjustMethod)
+source("/run.edgeR.r")
+out.edgeR <- run.edgeR(counts, target, varInt, condRef, batch, cpmCutoff, minReplicates, normalizationMethod, pAdjustMethod)
 
 # MDS + clustering
 source("/clusterPlot.R")
-#source("/MDSPlot.R")
-#source("/heatmap.R")
-#clusterPlot(group=target[,varInt], OutDir)  
-#MDSPlot(group=target[,varInt], gene.selection, col, OutDir)
-#Heatmap(OutDir)
+source("/MDSPlot.R")
+source("/heatmap.R")
+clusterPlot(group=target[,varInt], output.file="cluster.png")  
+MDSPlot(group=target[,varInt], gene.selection, col, output.file="MDS.png")
+Heatmap(output.file="heatmap.png")
 
 # summary of the analysis (boxplots, dispersions, export table, nDiffTotal, histograms, MA plot)
-#source("/summarizeResults.edgeR.r")
-#summaryResults <- summarizeResults.edgeR(out.edgeR, group=target[,varInt], counts, alpha, col)
-
+source("/summarizeResults.edgeR.r")
+summaryResults <- summarizeResults.edgeR(out.edgeR, group=target[,varInt], counts, alpha, col)
 
 # generating HTML report
-#source("/writeReport.edgeR.r")
-#writeReport.edgeR(target=target, counts=counts, out.edgeR=out.edgeR, summaryResults=summaryResults,
-#                  majSequences=majSequences, OutDir=OutDir, projectName=projectName, author=author,
-#                  targetFile=targetFile, rawDir=rawDir, featuresToRemove=featuresToRemove, varInt=varInt,
-#                  condRef=condRef, batch=batch, alpha=alpha, pAdjustMethod=pAdjustMethod, colors=colors,
-#                  gene.selection=gene.selection, normalizationMethod=normalizationMethod)
+source("/writeReport.edgeR.r")
+writeReport.edgeR(target=target, counts=counts, out.edgeR=out.edgeR, summaryResults=summaryResults,
+                  majSequences=majSequences, OutDir=OutDir, projectName=projectName, author=author,
+                  targetFile=targetFile, rawDir=rawDir, featuresToRemove=featuresToRemove, varInt=varInt,
+                  condRef=condRef, batch=batch, alpha=alpha, pAdjustMethod=pAdjustMethod, colors=colors,
+                  gene.selection=gene.selection, normalizationMethod=normalizationMethod)
 
 # End

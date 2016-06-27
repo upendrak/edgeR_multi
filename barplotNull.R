@@ -9,12 +9,10 @@
 #' @return A file named barplotNull.png in the figures directory
 #' @author Marie-Agnes Dillies and Hugo Varet
 
-barplotNull <- function(counts, group=target[,varInt], OutDir, col){
-    nd = paste(OutDir,"figures",sep="/")
-
+barplotNull <- function(counts, group=target[,varInt], output.file="barplotNull.png", col){
     col <- unlist(strsplit(ret.opts$colors, ","))
 
-    png(filename=paste(nd,"barplotNull.png",sep="/"),width=min(3600,1800+800*ncol(counts)/10),height=1800,res=300)
+    png(filename=output.file,width=min(3600,1800+800*ncol(counts)/10),height=1800,res=300)
     percentage <- apply(counts, 2, function(x){sum(x == 0)})*100/nrow(counts)
     percentage.allNull <- (nrow(counts) - nrow(removeNull(counts)))*100/nrow(counts)
     barplot(percentage, las = 2,

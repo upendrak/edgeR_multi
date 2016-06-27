@@ -8,12 +8,10 @@
 #' @return A file named pairwiseScatter.png in the figures directory containing a pairwise scatter plot with the SERE statistics in the lower panel
 #' @author Marie-Agnes Dillies and Hugo Varet
 
-pairwiseScatterPlots <- function(counts, OutDir, group=target[,varInt]){
+pairwiseScatterPlots <- function(counts, output.file="pairwiseScatter.png", group=target[,varInt]){
   ncol <- ncol(counts)
   
-  nd = paste(OutDir,"figures",sep="/")
-
-  png(filename=paste(nd,"pairwiseScatter.png",sep="/"),width=800*ncol,height=800*ncol,res=300)
+  png(filename=output.file,width=800*ncol,height=800*ncol,res=300)
     # defining panel and lower.panel functions
 	panel <- function(x,y,...){points(x, y, pch=".");abline(a=0,b=1,lty=2);}
 	lower.panel <- function(x,y,...){

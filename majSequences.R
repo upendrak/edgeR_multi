@@ -10,7 +10,7 @@
 #' @return A \code{matrix} with the percentage of reads of the three most expressed sequences and a file named majSeq.png in the figures directory
 #' @author Marie-Agnes Dillies and Hugo Varet
 
-majSequences <- function(counts, n=3, group=target[,varInt], OutDir, col){
+majSequences <- function(counts, n=3, group=target[,varInt], output.file="majseq.png", col){
 
   seqnames <- apply(counts, 2, function(x){x <- sort(x, decreasing=TRUE); names(x)[1:n]})
   seqnames <- unique(unlist(as.character(seqnames)))
@@ -20,11 +20,9 @@ majSequences <- function(counts, n=3, group=target[,varInt], OutDir, col){
   sum <- matrix(sum,nrow(counts),ncol(counts),byrow=TRUE)
   p <- round(100*counts/sum,digits=3)
 
-  nd = paste(OutDir,"figures",sep="/")
-  
   col <- unlist(strsplit(ret.opts$colors, ","))
   
-  png(filename=paste(nd,"majSeq.png",sep="/"),width=min(3600,1800+800*ncol(counts)/10),height=1800,res=300)
+  png(filename=output.file,width=min(3600,1800+800*ncol(counts)/10),height=1800,res=300)
   maj <- apply(p, 2, max)
   seqname <- rownames(p)[apply(p, 2, which.max)]
   x <- barplot(maj, col=col[as.integer(group)], main="Proportion of reads from most expressed sequence",

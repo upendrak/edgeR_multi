@@ -8,12 +8,12 @@
 #' @return A file named cluster.png in the figures directory with the dendrogram of the clustering
 #' @author Marie-Agnes Dillies and Hugo Varet
 
-clusterPlot <- function(group=target[,varInt], OutDir){
+clusterPlot <- function(group=target[,varInt], output.file="cluster.png"){
   object=out.edgeR$dge
   counts.trans=cpm(object, prior.count=2, log=TRUE)
   hc <- hclust(dist(t(counts.trans)), method="ward.D")
 
-  png(filename=paste(OutDir,"cluster.png",sep="/"),width=1800,height=1800,res=300)
+  png(filename=output.file,width=1800,height=1800,res=300)
   plot(hc, hang=-1, ylab="Height", las=2, xlab="Method: Euclidean distance - Ward criterion", main="Cluster dendrogram")
   dev.off()
 }

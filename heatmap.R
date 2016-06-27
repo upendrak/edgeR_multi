@@ -1,4 +1,4 @@
-Heatmap <- function(OutDir) 
+Heatmap <- function(output.file="heatmap.png") 
 {
 		object=out.edgeR$dge
 
@@ -12,10 +12,8 @@ Heatmap <- function(OutDir)
 		rv <- rowVars(countspermi)
 		idx <- order(-rv)[1:20]
 
-		nd = paste(OutDir,"figures",sep="/")
-
 		# Plotting
-  		png(filename=paste(nd,"heatmap.png",sep="/"),width=1800,height=1800,res=300)
+  		png(filename=output.file,width=1800,height=1800,res=300)
 		heatmap(countspermi[idx,], Colv = NA)
 		title("Heatmap", line = 3)
 		dev.off()

@@ -8,36 +8,29 @@
 #' @return PNG files in the "figures" directory and the matrix of the most expressed sequences
 #' @author Hugo Varet
 
-descriptionPlots <- function(counts, n=3, group=target[,varInt], OutDir, col){
-  # create the figures directory if does not exist
-  dir.create(paste(OutDir,"figures",sep="/"), showWarnings=FALSE)
+descriptionPlots <- function(counts, n=3, group=target[,varInt], col){
   
-  source("/barplotTotal.R")
-
-  # total number of reads per sample
-  barplotTotal(counts, group=target[,varInt], OutDir, col)
+ # total number of reads per sample
+ source("/barplotTotal.R")
+ barplotTotal(counts, group=target[,varInt], output.file="BarplotTotal.png", col)
+ 
+ # percentage of null counts per sample
+ source("/barplotNull.R")
+ barplotNull(counts, group=target[,varInt], output.file="barplotNull.png", col)
   
-  source("/barplotNull.R")
-
-  # percentage of null counts per sample
-  barplotNull(counts, group=target[,varInt], OutDir, col)
+ # distribution of counts per sample
+ source("/densityPlot.R")
+ densityPlot(counts, group=target[,varInt], output.file="densplot.png", col)
   
-  source("/densityPlot.R")
-
-  # distribution of counts per sample
-  densityPlot(counts, group=target[,varInt], OutDir, col)
+ # features which catch the most important number of reads
+ source("/majSequences.R")
+ majSequences <- majSequences(counts,  n=3, group=target[,varInt], output.file="majSeq.png", col)
   
-  source("/majSequences.R")
-
-  # features which catch the most important number of reads
-  majSequences <- majSequences(counts,  n=3, group=target[,varInt], OutDir, col)
-  
-  source("/pairwiseScatterPlots.R")
-
-  # SERE and pairwise scatter plots
-  cat("Matrix of SERE statistics:\n")
-  print(tabSERE(counts))
-  pairwiseScatterPlots(counts, group=target[,varInt], OutDir)
+ # SERE and pairwise scatter plots
+ source("/pairwiseScatterPlots.R")  
+ cat("Matrix of SERE statistics:\n")
+ print(tabSERE(counts))
+ pairwiseScatterPlots(counts, group=target[,varInt], output.file="pairwiseScatter.png")
   
   return(majSequences)
 }
