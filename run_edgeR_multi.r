@@ -79,8 +79,8 @@ counts <- loadCountData(target, rawDir, header=FALSE, skip=0, featuresToRemove)
 #majSequences <- descriptionPlots(counts, n=3, OutDir, group=target[,varInt], col)
 
 # edgeR analysis
-source("/run.edgeR.r")
-out.edgeR <- run.edgeR(counts, target, varInt, condRef, batch, cpmCutoff, minReplicates, normalizationMethod, pAdjustMethod)
+#source("/run.edgeR.r")
+#out.edgeR <- run.edgeR(counts, target, varInt, condRef, batch, cpmCutoff, minReplicates, normalizationMethod, pAdjustMethod)
 
 # MDS + clustering
 source("/clusterPlot.R")
