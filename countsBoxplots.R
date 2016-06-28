@@ -9,7 +9,7 @@
 #' @return A file named countsBoxplots.png in the figures directory containing boxplots of the raw and normalized counts
 #' @author Marie-Agnes Dillies and Hugo Varet
 
-countsBoxplots <- function(object, group=target[,varInt], col, output.file="countsBoxplots.png"){
+countsBoxplots <- function(object, col, group=target[,varInt], output.file="countsBoxplots.png"){
   counts <- object$counts
   counts <- removeNull(counts)
 	tmm <- object$samples$norm.factors
