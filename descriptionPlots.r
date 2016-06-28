@@ -11,7 +11,7 @@
 descriptionPlots <- function(counts, n=3, group=target[,varInt],output.file=output.file, col){
  # total number of reads per sample
  source("/barplotTotal.R")
- barplotTotal(counts, group=target[,varInt], output.file="BarplotTotal.png", col)
+ barplotTotal(counts, group=target[,varInt], output.file="barplotTotal.png", col)
 
  # percentage of null counts per sample
  source("/barplotNull.R")
