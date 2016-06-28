@@ -8,7 +8,7 @@
 #' @return PNG files in the "figures" directory and the matrix of the most expressed sequences
 #' @author Hugo Varet
 
-descriptionPlots <- function(counts, n=3, group=target[,varInt], col){
+descriptionPlots <- function(counts, n=3, group=target[,varInt],output.file=output.file, col){
  # total number of reads per sample
  source("/barplotTotal.R")
  barplotTotal(counts, group=target[,varInt], output.file="BarplotTotal.png", col)

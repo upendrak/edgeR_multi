@@ -76,7 +76,7 @@ counts <- loadCountData(target, rawDir, header=FALSE, skip=0, featuresToRemove)
 
 # description plots
 source("/descriptionPlots.r")
-majSequences <- descriptionPlots(counts, n=3, OutDir, group=target[,varInt], col)
+majSequences <- descriptionPlots(counts, n=3, group=target[,varInt], output.file=output.file, col)
 
 #source("/barplotTotal.R")
 #barplotTotal(counts, group=target[,varInt], output.file="BarplotTotal.png", col)
