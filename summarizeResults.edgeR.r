@@ -10,11 +10,11 @@
 #' @return A list containing: (i) a list of \code{data.frames} from \code{exportResults.edgeR()} and (ii) a table summarizing the number of differentially expressed features
 #' @author Hugo Varet
 
-summarizeResults.edgeR <- function(out.edgeR, group, counts, alpha, col){  
+summarizeResults.edgeR <- function(out.edgeR, group=target[,varInt], counts, alpha, col){  
   
   # boxplots before and after normalisation
   source("/countsBoxplots.R")
-  countsBoxplots(out.edgeR$dge, col, group=target[,varInt], output.file="countsBoxplots.png")
+  countsBoxplots(out.edgeR$dge, group=target[,varInt], col=col, output.file="countsBoxplots.png")
 
   # dispersions
   source("/BCVPlot.R")
@@ -25,7 +25,7 @@ summarizeResults.edgeR <- function(out.edgeR, group, counts, alpha, col){
   complete <- exportResults.edgeR(out.edgeR, group=target[,varInt], counts, alpha, OutDir)
 
   # small table with number of differentially expressed features
-  nDiffTotal <- nDiffTotal(complete, alpha)
+  nDiffTotal <- nDiffTotal(complete, alpha=alpha)
   cat("Number of features down/up and total:\n")
   print(nDiffTotal, quote=FALSE)
   
@@ -35,11 +35,11 @@ summarizeResults.edgeR <- function(out.edgeR, group, counts, alpha, col){
   
   # MA-plots
   source("/MAPlot.R")
-  MAPlot(complete, alpha, output.file="MAPlot.png")
+  MAPlot(complete, alpha=alpha, output.file="MAPlot.png")
   
   # Volcano plots
   source("/volcanoPlot.r")
-  volcanoPlot(complete, alpha, output.file="volcanoPlot.png")
+  volcanoPlot(complete, alpha=alpha, output.file="volcanoPlot.png")
   
   return(list(complete, nDiffTotal))
 }
