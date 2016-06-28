@@ -104,20 +104,20 @@ majSequences <- descriptionPlots(counts, n=3, OutDir, group=target[,varInt], col
 #out.edgeR <- run.edgeR(counts, target, varInt, condRef, batch, cpmCutoff, minReplicates, normalizationMethod, pAdjustMethod)
 
 # MDS + clustering
-source("/clusterPlot.R")
-source("/MDSPlot.R")
-source("/heatmap.R")
-clusterPlot(group=target[,varInt], output.file="cluster.png")  
-MDSPlot(group=target[,varInt], gene.selection, col, output.file="MDS.png")
-Heatmap(output.file="heatmap.png")
+#source("/clusterPlot.R")
+#source("/MDSPlot.R")
+#source("/heatmap.R")
+#clusterPlot(group=target[,varInt], output.file="cluster.png")  
+#MDSPlot(group=target[,varInt], gene.selection, col, output.file="MDS.png")
+#Heatmap(output.file="heatmap.png")
 
 # summary of the analysis (boxplots, dispersions, export table, nDiffTotal, histograms, MA plot)
 #source("/summarizeResults.edgeR.r")
 #summaryResults <- summarizeResults.edgeR(out.edgeR, group=target[,varInt], counts, alpha, col)
 
 # boxplots before and after normalisation
-source("/countsBoxplots.R")
-countsBoxplots(out.edgeR$dge, col, group=target[,varInt], output.file="countsBoxplots.png")
+#source("/countsBoxplots.R")
+#countsBoxplots(out.edgeR$dge, col, group=target[,varInt], output.file="countsBoxplots.png")
 
 # generating HTML report
 #source("/writeReport.edgeR.r")
