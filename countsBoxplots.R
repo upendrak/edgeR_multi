@@ -21,7 +21,7 @@ countsBoxplots <- function(object, group=target[,varInt], col, output.file="coun
   png(filename=output.file,width=2*min(2200,1800+800*ncol(norm.counts)/10),height=1800,res=300)
   par(mfrow=c(1,2))
 	
-  col <- unlist(strsplit(col, ","))
+  col <- unlist(strsplit(ret.opts$colors, ","))
 
   # raw counts
   boxplot(log2(counts+1), col = col[as.integer(group)], las = 2,
