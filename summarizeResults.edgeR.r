@@ -14,7 +14,7 @@ summarizeResults.edgeR <- function(out.edgeR, group=target[,varInt], counts, alp
   
   # boxplots before and after normalisation
   source("/countsBoxplots.R")
-  countsBoxplots(out.edgeR$dge, group=target[,varInt], col=col, output.file="countsBoxplots.png")
+  countsBoxplots(out.edgeR$dge, group, col=target[,varInt], output.file="countsBoxplots.png")
 
   # dispersions
   source("/BCVPlot.R")
