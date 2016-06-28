@@ -61,8 +61,8 @@ percentNull <- nbNull/nrow(counts)
 ```
 
 Figure 1 shows the total number of mapped reads for each sample. Reads that map on multiple locations on the transcriptome are counted more than once, as far as they are mapped on less than 50 different loci. We expect total read counts to be similar within conditions, they may be different across conditions. Total counts sometimes vary widely between replicates. This may happen for several reasons, including:
-- Different rRNA contamination levels between samples (even between biological replicates);
-- Slight differences between library concentrations, since they may be difficult to measure with high precision.
+- different rRNA contamination levels between samples (even between biological replicates);
+- slight differences between library concentrations, since they may be difficult to measure with high precision.
 
 <figure>
 <center>
@@ -109,7 +109,7 @@ We may wish to assess the similarity between samples across conditions. A pairwi
 
 <figure>
 <center>
-    <img src="pairwiseScatter.png" alt="Pairwise scatter plot" />
+    <img src="pairwiseScatter.png" alt="Pairwise scatter plot" width="60%" />
 	<figcaption> Figure 5: Pairwise comparison of samples. </figcaption>
 </center>
 </figure>
@@ -207,7 +207,7 @@ Once the dispersion estimation and the model fitting have been done, edgeR can p
 
 <figure>
 <center>
-    <img src="rawpHist.png" alt="Histogram(s) of raw p-values" />
+    <img src="rawpHist.png" alt="Histogram(s) of raw p-values" width="60%" />
 	<figcaption> Figure 11: Distribution(s) of raw p-values. </figcaption>
 </center>
 </figure>
@@ -216,13 +216,15 @@ Once the dispersion estimation and the model fitting have been done, edgeR can p
 
 A p-value adjustment is performed to take into account multiple testing and control the false positive rate to a chosen level $\alpha$. For this analysis, a `r pAdjustMethod` p-value adjustment was performed [Benjamini, 1995 and 2001] and the level of controlled false positive rate was set to `r alpha`.
 
+```{r , cache=TRUE, echo=FALSE, results="asis"}
 print(xtable(summaryResults$nDiffTotal,caption="Table 6: Number of up-, down- and total number of differentially expressed features for each comparison."),type="html",include.rownames=FALSE, html.table.attributes = "align='center'")
+```
 
 Figure 12 represents the MA-plot of the data for the comparisons done, where differentially expressed features are highlighted in red. A MA-plot represents the log ratio of differential expression as a function of the mean intensity for each feature. Triangles correspond to features having a too low/high $\log_2(\text{FC})$ to be displayed on the plot.
 
 <figure>
 <center>
-    <img src="MAPlot.png" alt="MA-plot(s)" />
+    <img src="MAPlot.png" alt="MA-plot(s)" width="60%" />
 	<figcaption> Figure 12: MA-plot(s) of each comparison. Red dots represent significantly differentially expressed features. </figcaption>
 </center>
 </figure>
@@ -231,7 +233,7 @@ Figure 13 shows the volcano plots for the comparisons performed and differential
 
 <figure>
 <center>
-    <img src="volcanoPlot.png" alt="Volcano plot(s)" />
+    <img src="volcanoPlot.png" alt="Volcano plot(s)" width="60%" />
 	<figcaption> Figure 13: Volcano plot(s) of each comparison. Red dots represent significantly differentially expressed features. </figcaption>
 </center>
 </figure>
@@ -289,7 +291,6 @@ cat(paste(si, collapse="\n -"), "\n")
 - gene.selection: `r gene.selection`
 - colors: `r col`
 - normalizationMethod: `r normalizationMethod`
-- OutDir: `r OutDir`
 
 --------------------------------------------------------------------------------------------------------------------------
 
