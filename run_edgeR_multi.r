@@ -91,8 +91,8 @@ MDSPlot(group=target[,varInt], gene.selection, col, output.file="MDS.png")
 Heatmap(output.file="heatmap.png")
 
 # summary of the analysis (boxplots, dispersions, export table, nDiffTotal, histograms, MA plot)
-#source("/summarizeResults.edgeR.r")
-#summaryResults <- summarizeResults.edgeR(out.edgeR, group=target[,varInt], counts, alpha, col)
+source("/summarizeResults.edgeR.r")
+summaryResults <- summarizeResults.edgeR(out.edgeR, group=target[,varInt], counts, alpha, col)
 
 # boxplots before and after normalisation
 #source("/countsBoxplots.R")
