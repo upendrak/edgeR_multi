@@ -78,38 +78,17 @@ counts <- loadCountData(target, rawDir, header=FALSE, skip=0, featuresToRemove)
 source("/descriptionPlots.r")
 majSequences <- descriptionPlots(counts, n=3, group=target[,varInt], output.file=output.file, col)
 
-#source("/barplotTotal.R")
-#barplotTotal(counts, group=target[,varInt], output.file="BarplotTotal.png", col)
-
-# percentage of null counts per sample
-#source("/barplotNull.R")
-#barplotNull(counts, group=target[,varInt], output.file="barplotNull.png", col)
-
-# distribution of counts per sample
-#source("/densityPlot.R")
-#densityPlot(counts, group=target[,varInt], output.file="densplot.png", col)
-
-# features which catch the most important number of reads
-#source("/majSequences.R")
-#majSequences(counts,  n=3, group=target[,varInt], output.file="majSeq.png", col)
-
-# SERE and pairwise scatter plots
-#source("/pairwiseScatterPlots.R")
-#cat("Matrix of SERE statistics:\n")
-#print(tabSERE(counts))
-#pairwiseScatterPlots(counts, group=target[,varInt], output.file="pairwiseScatter.png")
-
 # edgeR analysis
-#source("/run.edgeR.r")
-#out.edgeR <- run.edgeR(counts, target, varInt, condRef, batch, cpmCutoff, minReplicates, normalizationMethod, pAdjustMethod)
+source("/run.edgeR.r")
+out.edgeR <- run.edgeR(counts, target, varInt, condRef, batch, cpmCutoff, minReplicates, normalizationMethod, pAdjustMethod)
 
 # MDS + clustering
-#source("/clusterPlot.R")
-#source("/MDSPlot.R")
-#source("/heatmap.R")
-#clusterPlot(group=target[,varInt], output.file="cluster.png")  
-#MDSPlot(group=target[,varInt], gene.selection, col, output.file="MDS.png")
-#Heatmap(output.file="heatmap.png")
+source("/clusterPlot.R")
+source("/MDSPlot.R")
+source("/heatmap.R")
+clusterPlot(group=target[,varInt], output.file="cluster.png")  
+MDSPlot(group=target[,varInt], gene.selection, col, output.file="MDS.png")
+Heatmap(output.file="heatmap.png")
 
 # summary of the analysis (boxplots, dispersions, export table, nDiffTotal, histograms, MA plot)
 #source("/summarizeResults.edgeR.r")
