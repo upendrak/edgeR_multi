@@ -94,16 +94,12 @@ Heatmap(output.file="heatmap.png")
 source("/summarizeResults.edgeR.r")
 summaryResults <- summarizeResults.edgeR(out.edgeR, group=target[,varInt], counts, alpha, col)
 
-# boxplots before and after normalisation
-#source("/countsBoxplots.R")
-#countsBoxplots(out.edgeR$dge, col, group=target[,varInt], output.file="countsBoxplots.png")
-
 # generating HTML report
-#source("/writeReport.edgeR.r")
-#writeReport.edgeR(target=target, counts=counts, out.edgeR=out.edgeR, summaryResults=summaryResults,
-#                  majSequences=majSequences, OutDir=OutDir, projectName=projectName, author=author,
-#                  targetFile=targetFile, rawDir=rawDir, featuresToRemove=featuresToRemove, varInt=varInt,
-#                  condRef=condRef, batch=batch, alpha=alpha, pAdjustMethod=pAdjustMethod, colors=colors,
-#                  gene.selection=gene.selection, normalizationMethod=normalizationMethod)
+source("/writeReport.edgeR.r")
+writeReport.edgeR(target=target, counts=counts, out.edgeR=out.edgeR, summaryResults=summaryResults,
+                  majSequences=majSequences, OutDir=OutDir, projectName=projectName, author=author,
+                  targetFile=targetFile, rawDir=rawDir, featuresToRemove=featuresToRemove, varInt=varInt,
+                  condRef=condRef, batch=batch, alpha=alpha, pAdjustMethod=pAdjustMethod, colors=colors,
+                  gene.selection=gene.selection, normalizationMethod=normalizationMethod)
 
 # End
