@@ -55,7 +55,6 @@ varInt  <- ret.opts$varInt
 condRef <- ret.opts$condRef
 batch <- ret.opts$batch
 minReplicates <- ret.opts$replicates
-fitType <- ret.opts$filtType
 gene.selection <- ret.opts$genesele
 cpmCutoff <- ret.opts$cpmCutoff
 normalizationMethod <- ret.opts$norm
