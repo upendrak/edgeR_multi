@@ -1,7 +1,7 @@
 #!/usr/bin/Rscript
 
 ################################################################################
-### R script to compare several conditions with the SARTools and DESeq2 packages
+### R script to compare several conditions with the SARTools and edgeR packages
 ### Upendra Devisetty
 ### June 16th, 2016
 ################################################################################
