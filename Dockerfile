@@ -22,8 +22,8 @@ RUN Rscript -e 'install.packages("knitr", dependencies = TRUE);'
 RUN Rscript -e 'install.packages("RColorBrewer", dependencies = TRUE);'
 
 # Add multiple custom functions for Pie_compare, Pie_plot and Bar_compare plots
-ENV EDGERM https://github.com/upendrak/edgeR_multi.git
-RUN git clone $EDGERM
+ENV EDGER1234 https://github.com/upendrak/edgeR_multi.git
+RUN git clone $EDGER1234
 
 WORKDIR /edgeR_multi
 
