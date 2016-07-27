@@ -20,8 +20,9 @@ library(genefilter)
 args<-commandArgs(TRUE)
 
 options<-matrix(c('project',  'pn', 1,  "character",    # project name
-                  'author', 'au', 1,  "character",      # author of the statistical analysis/report  
-                  'Dir',  'r',  1,  "character",        # path to the directory containing raw counts files
+                  'author', 'au', 1,  "character",      # author of the statistical analysis/report 
+                  'Dir',  'r',  2,  "character",          # path to the directory containing raw counts files
+                  'rawCounts', 'rc', 2, "character",     # path to the combined raw count file
                   'OutDir',  'w',  1,  "character",     # path to the output file 
                   'target', 't',  1,  "character",      # path to the design/target file
                   'features', 'fe', 2,  "character",    # names of the features to be removed (specific HTSeq-count information and rRNA for example)
@@ -49,6 +50,7 @@ projectName <- ret.opts$project
 author  <-  ret.opts$author
 targetFile <- ret.opts$target
 rawDir <- ret.opts$Dir
+rawCounts <- ret.opts$rawCounts
 OutDir <- ret.opts$OutDir
 featuresToRemove <- ret.opts$features
 varInt  <- ret.opts$varInt
@@ -62,16 +64,20 @@ alpha <- ret.opts$alpha
 pAdjustMethod <- ret.opts$pAdjust
 col <- ret.opts$colors
 
-# checking parameters
-checkParameters.edgeR(projectName,author,targetFile,rawDir,featuresToRemove,varInt,condRef,batch,alpha,pAdjustMethod,cpmCutoff,
-                      gene.selection,normalizationMethod,col)
-
 # loading target file
-target <- loadTargetFile(targetFile, varInt, condRef, batch)
+target <- loadTargetFile(targetFile=targetFile, varInt=varInt, condRef=condRef, batch=batch)
 
-# loading counts
+# Raw counts directory
+if (!is.null(ret.opts$Dir)) {
 source("/loadCountData.R")
-counts <- loadCountData(target, rawDir, header=FALSE, skip=0, featuresToRemove)
+counts <- loadCountData(target=target, rawDir=rawDir, header=TRUE, skip=0, featuresToRemove=featuresToRemove)
+}
+
+# Raw counts file
+if (!is.null(ret.opts$rawCounts)) {
+source("/loadCountDatarc.R")
+counts <- loadCountDatarc(target=target, rawCounts=rawCounts, header=TRUE, skip=0, featuresToRemove=featuresToRemove)
+}
 
 # description plots
 source("/descriptionPlots.r")

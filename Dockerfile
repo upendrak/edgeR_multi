@@ -40,3 +40,5 @@ CMD ["-h"]
 # sudo docker build -t"=rbase/edger-multi:1.0" .
 # sudo docker run rbase/edger-multi:1.0 -h
 # sudo docker run --rm -v $(pwd):/working-dir -w /working-dir rbase/edger-multi:1.0 --project "test_edgeR" --author "Upendra" --Dir raw --OutDir ./ --target target.txt --features "alignment_not_unique","ambiguous","no_feature","not_aligned","too_low_aQual" --replicates 2 --varInt "group" --condRef "WT" --cpmCutoff 1 --genesele "pairwise" --norm "TMM" --alpha 0.05 --pAdjust "BH" --colors "dodgerblue","orange"
+#docker build -t"=rbase/edgermulti:2.0" .
+#docker run --rm -v $(pwd):/working-dir -w /working-dir rbase/edgermulti:2.0 --project "test_edgeR" --author "Upendra" --Dir raw --OutDir ./ --target target.txt --features "alignment_not_unique","ambiguous","no_feature","not_aligned","too_low_aQual" --replicates 2 --varInt "group" --condRef "WT" --cpmCutoff 1 --genesele "pairwise" --norm "TMM" --alpha 0.05 --pAdjust "BH" --colors "dodgerblue","orange"
