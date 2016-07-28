@@ -11,7 +11,7 @@
 #' @details If \code{featuresToRemove} is equal to \code{"rRNA"}, all the features containing the character string "rRNA" will be removed from the counts.
 #' @author Marie-Agnes Dillies and Hugo Varet
 
-loadCountData <- function(target, rawDir, header=FALSE, skip=0, featuresToRemove){
+loadCountData <- function(target, rawDir, header=TRUE, skip=0, featuresToRemove){
 
   labels <- as.character(target[,1])
   files <- as.character(target[,2])
