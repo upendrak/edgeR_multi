@@ -21,24 +21,20 @@ RUN Rscript -e 'install.packages("getopt", dependencies = TRUE);'
 RUN Rscript -e 'install.packages("knitr", dependencies = TRUE);'
 RUN Rscript -e 'install.packages("RColorBrewer", dependencies = TRUE);'
 
-# Add multiple custom functions for Pie_compare, Pie_plot and Bar_compare plots
-ENV EDGER1234 https://github.com/upendrak/edgeR_multi.git
-RUN git clone $EDGER1234
-
-WORKDIR /edgeR_multi
+# Add multiple custom functions for Pie_compare, Pie_plot and Bar_compare plots to the root paths
+ADD *.R *.r *.rmd /
 
 # change permissions to the wrapper script
 ENV BINPATH /usr/bin
-RUN chmod +x run_edgeR_multi.r && cp run_edgeR_multi.r $BINPATH
-RUN rm -r test_data Dockerfile
-RUN mv *.* /
+RUN chmod +x /run_edgeR_multi.r && cp /run_edgeR_multi.r $BINPATH
 
 ENTRYPOINT ["run_edgeR_multi.r"]
 CMD ["-h"]
+
 
 # Building and testing
 # sudo docker build -t"=rbase/edger-multi:1.0" .
 # sudo docker run rbase/edger-multi:1.0 -h
 # sudo docker run --rm -v $(pwd):/working-dir -w /working-dir rbase/edger-multi:1.0 --project "test_edgeR" --author "Upendra" --Dir raw --OutDir ./ --target target.txt --features "alignment_not_unique","ambiguous","no_feature","not_aligned","too_low_aQual" --replicates 2 --varInt "group" --condRef "WT" --cpmCutoff 1 --genesele "pairwise" --norm "TMM" --alpha 0.05 --pAdjust "BH" --colors "dodgerblue","orange"
 #docker build -t"=rbase/edgermulti:2.0" .
-#docker run --rm -v $(pwd):/working-dir -w /working-dir rbase/edgermulti:2.0 --project "test_edgeR" --author "Upendra" --Dir raw --OutDir ./ --target target.txt --features "alignment_not_unique","ambiguous","no_feature","not_aligned","too_low_aQual" --replicates 2 --varInt "group" --condRef "WT" --cpmCutoff 1 --genesele "pairwise" --norm "TMM" --alpha 0.05 --pAdjust "BH" --colors "dodgerblue","orange"
+#docker run --rm -v $(pwd):/working-dir -w /working-dir rbase/edgermulti:2.0 --project "test_edgeR" --author "Upendra" --rawCounts counts3.txt --OutDir test_out_edgeR --target target3.txt --features "alignment_not_unique","ambiguous","no_feature","not_aligned","too_low_aQual" --replicates 2 --varInt "group" --condRef "OP" --cpmCutoff 1 --genesele "pairwise" --norm "TMM" --alpha 0.05 --pAdjust "BH" --colors "dodgerblue","orange","green" --batch "cond"
