@@ -79,7 +79,7 @@ source("/loadCountDatarc.R")
 counts <- loadCountDatarc(target=target, rawCounts=rawCounts, header=TRUE, skip=0, featuresToRemove=featuresToRemove)
 }
 
-# description plots
+# # description plots
 source("/descriptionPlots.r")
 majSequences <- descriptionPlots(counts, n=3, group=target[,varInt], output.file=output.file, col)
 
